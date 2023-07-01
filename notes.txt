@@ -1,0 +1,243 @@
+Note:  
+1.acs -- accessed
+
+Default:
+    firstly the default access modifier is called the package level modifier where the class declared as default,
+    can be accessed only if they are available in the same package it cannot be accessed from another package.
+
+    An class cannot be declared as private || protected in Top-level class it can be private in subclasses or nested classes
+    it can only be public,abstract,final.
+
+    protected method with default class can be accesed
+
+    private methods cannot be accesed even if they are in same package
+        #Setting access to an private method, should be done by :
+        #in  main method add throws Exception
+        Class c=Hello.class;//className.class
+        Object obj=c.newInstance();
+        Method m=c.getDeclaredMethod("def",null);//(method name,params type declaration)
+        m.setAccessible(true);
+        m.invoke(obj, null);//(obj,args)
+
+    protected methods can be "acs" within the same class and diff class in the same package.
+    
+    we can find whether to impl inheritance by jus seeing the word "is a" for Ex:
+        #Car is vehicle
+        #lizard is a reptile
+        #An parent child relationship, child class extends parent where in case of vehicle it can 
+        be 2 wheeler 3 wheeler and others where an similarity is they are vehicles and they have An
+        diff behav of riding them.
+
+    If the abstract class has an param constr then its extended class should also have an param constructor
+    of the super class that should be mentioned in the constru body of extended class
+    public abstract class Main{
+        protected String name;
+        @Data
+        @ArgsConstructor
+        
+    }
+    class Test extends Main{
+        public Test(String name){
+            super(name);
+        }
+    }
+    The main reason for abstract class is that encapsulating common fun,
+    polymorphic behvior where an abstract class is able to hold the instance/object of
+    the subclass and can run anytime.
+
+    An exmaple of Param abstract methods
+    public abstract class Test {
+        protected String name;
+        public Test(String name){ this.name=name;}
+        abstract void dis();
+    }
+    class Test2 extends Test{
+        String role;
+        public Test2(String role,String name){
+            super(name);
+            this.role=role;
+        }
+        void dis(){
+            System.out.println("hello "+name+role);
+        }    
+    }
+
+    #if the method is non-abstract inside an abstract class then its an concrete Class
+    where it should be impl there itslef it cannot be simply impl with semicolon;
+    #if the class is declared as abs and the methods are not abs then its called the "adapter classes"
+    #abs var are not possible
+
+    Member modifier
+    #public --  Global level access
+    #private -- acs within the class
+    #default -- acs within the package
+
+    Inheritance in java where if we have mentioned params in parent constr and if we are ini child class with
+    constr then if we are in need of parent class constr we can call them by super()
+    method and it should be like,
+    class B extends A{
+        public B(super_params,length){
+            int length;
+            super(params);
+            this.length=length;
+        }
+    }
+
+
+    Classes are the blueprint where for example if we want an building to be built then 
+    we have the blueprint with bedroom, dining, portigo and etc...where its an prop of
+    the building that we have.
+
+    Whereas objects are the real world entity where they are built upon classes with the 
+    mentioned attributes like the dimensions of the building are mentioned through 
+    objects where they create memory like,
+           Bedroom b=new Bedroom();
+           b.length=20;
+           b.width=40;
+    hence the length and width of the bedroom is set, the memory is created internally.
+    On the whole, object is the entity that exists in memory and can be manipulated.
+
+
+    #In inheritance we java doesnt support the multiple inheritance concept since, in case of
+     multiple inh if we have the methods that are common to the classes that are related to each 
+     other, 
+     the method overrides the parent class method when we are extending them, it cant extend coz 
+     when we create an object for the subclass and once the method is been called it cannot 
+     decide from which class should I call the given method, there occurs an problem , but actually 
+     the method is overriden then y shouldn't the overriden method been displayed ??
+
+     Incase of interface the methods are just initialized but not been given body , an class can extend
+     more than 1 interface and they can define the bodies for them by defining the objects and calling them.
+interface Phone{
+    void Display();
+    void Ram();
+}
+interface Laptop{
+    // final String name;
+    void Screen();
+    void Ram(String name);
+}
+public class Keys implements Phone,Laptop {
+    public void Display(){
+        System.out.println("hello dplay");
+    }
+    public void Ram(String name){
+        System.out.println("hello RAM"+name);
+    }
+    public void Ram(){
+        System.out.println("helooram ");
+    }
+    public void Screen(){
+        System.out.println("hello scren");
+    }
+    public void Hdd(){
+        System.out.println("hell hdd");
+    }
+}
+
+An example of the multiple inh concept that cannot be impl
+
+class ParentClass {
+    void parentMethod() {
+        System.out.println("Parent method");
+    }
+}
+
+class AnotherParentClass {
+    void anotherParentMethod() {
+        System.out.println("Another parent method");
+    }
+}
+
+class ChildClass extends ParentClass {
+    void childMethod() {
+        System.out.println("Child method");
+    }
+}
+
+class GrandChildClass extends ChildClass, AnotherParentClass { // This is not allowed in Java
+    void grandChildMethod() {
+        System.out.println("Grandchild method");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        GrandChildClass grandChildObj = new GrandChildClass();
+        grandChildObj.childMethod();           // Inherited from ChildClass
+        grandChildObj.parentMethod();          // Inherited from ParentClass
+        grandChildObj.anotherParentMethod();   // Inherited from AnotherParentClass
+        grandChildObj.grandChildMethod();      // Own method
+    }
+}
+ 
+
+#To overcome this we can use the "Composition/Delegation method" to solve this.
+#where a class contains objects of other classes to utilize their functionalities
+class ParentClass {
+    void parentMethod() {
+        System.out.println("Parent method");
+    }
+}
+
+class AnotherParentClass {
+    void anotherParentMethod() {
+        System.out.println("Another parent method");
+    }
+}
+
+class ChildClass {
+    private ParentClass parentObj;
+    private AnotherParentClass anotherParentObj;
+
+    ChildClass() {
+        parentObj = new ParentClass();
+        anotherParentObj = new AnotherParentClass();
+    }
+
+    void childMethod() {
+        System.out.println("Child method");
+    }
+
+    void parentMethod() {
+        parentObj.parentMethod();
+    }
+
+    void anotherParentMethod() {
+        anotherParentObj.anotherParentMethod();
+    }
+}
+
+class GrandChildClass {
+    private ChildClass childObj;
+
+    GrandChildClass() {
+        childObj = new ChildClass();
+    }
+
+    void grandChildMethod() {
+        System.out.println("Grandchild method");
+    }
+
+    void childMethod() {
+        childObj.childMethod();
+    }
+
+    void parentMethod() {
+        childObj.parentMethod();
+    }
+
+    void anotherParentMethod() {
+        childObj.anotherParentMethod();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        GrandChildClass grandChildObj = new GrandChildClass();
+        grandChildObj.childMethod();           // Inherited through composition
+        grandChildObj.parentMethod();          // Inherited through composition
+        grandChildObj.anotherParentMethod();   // Inherited through composition
+        grandChildObj.grandChildMethod();      // Own method
+    }
+}
