@@ -18,12 +18,12 @@ public class Index{
         // System.out.println("Gear is inc to "+b.addGear(4));
         // System.out.println("Speed is inc to "+b.incSpeed(15));
         // System.out.println("The gearshift is done "+b.gearShift(2));
-    Keys k=new Keys();
     // k.Display();
     // k.Hdd();
     // k.Ram("buju");
     // k.Screen();
     // k.Ram();
-    k.Hello();
+    Keys k=new Keys("kutyma", "20");
+    k.Display();
     }
 }

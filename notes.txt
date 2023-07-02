@@ -1,6 +1,6 @@
 Note:  
 1.acs -- accessed
-
+2.auto -- automatically
 Default:
     firstly the default access modifier is called the package level modifier where the class declared as default,
     can be accessed only if they are available in the same package it cannot be accessed from another package.
@@ -108,136 +108,179 @@ Default:
 
      Incase of interface the methods are just initialized but not been given body , an class can extend
      more than 1 interface and they can define the bodies for them by defining the objects and calling them.
-interface Phone{
-    void Display();
-    void Ram();
-}
-interface Laptop{
-    // final String name;
-    void Screen();
-    void Ram(String name);
-}
-public class Keys implements Phone,Laptop {
-    public void Display(){
-        System.out.println("hello dplay");
-    }
-    public void Ram(String name){
-        System.out.println("hello RAM"+name);
-    }
-    public void Ram(){
-        System.out.println("helooram ");
-    }
-    public void Screen(){
-        System.out.println("hello scren");
-    }
-    public void Hdd(){
-        System.out.println("hell hdd");
-    }
-}
+        interface Phone{
+            void Display();
+            void Ram();
+        }
+        interface Laptop{
+            // final String name;
+            void Screen();
+            void Ram(String name);
+        }
+        public class Keys implements Phone,Laptop {
+            public void Display(){
+                System.out.println("hello dplay");
+            }
+            public void Ram(String name){
+                System.out.println("hello RAM"+name);
+            }
+            public void Ram(){
+                System.out.println("helooram ");
+            }
+            public void Screen(){
+                System.out.println("hello scren");
+            }
+            public void Hdd(){
+                System.out.println("hell hdd");
+            }
+        }
 
-An example of the multiple inh concept that cannot be impl
+    An example of the multiple inh concept that cannot be impl
 
-class ParentClass {
-    void parentMethod() {
-        System.out.println("Parent method");
+    class ParentClass {
+        void parentMethod() {
+            System.out.println("Parent method");
+        }
     }
-}
 
-class AnotherParentClass {
-    void anotherParentMethod() {
-        System.out.println("Another parent method");
+    class AnotherParentClass {
+        void anotherParentMethod() {
+            System.out.println("Another parent method");
+        }
     }
-}
 
-class ChildClass extends ParentClass {
-    void childMethod() {
-        System.out.println("Child method");
+    class ChildClass extends ParentClass {
+        void childMethod() {
+            System.out.println("Child method");
+        }
     }
-}
 
-class GrandChildClass extends ChildClass, AnotherParentClass { // This is not allowed in Java
-    void grandChildMethod() {
-        System.out.println("Grandchild method");
+    class GrandChildClass extends ChildClass, AnotherParentClass { // This is not allowed in Java
+        void grandChildMethod() {
+            System.out.println("Grandchild method");
+        }
     }
-}
 
-public class Main {
-    public static void main(String[] args) {
-        GrandChildClass grandChildObj = new GrandChildClass();
-        grandChildObj.childMethod();           // Inherited from ChildClass
-        grandChildObj.parentMethod();          // Inherited from ParentClass
-        grandChildObj.anotherParentMethod();   // Inherited from AnotherParentClass
-        grandChildObj.grandChildMethod();      // Own method
+    public class Main {
+        public static void main(String[] args) {
+            GrandChildClass grandChildObj = new GrandChildClass();
+            grandChildObj.childMethod();           // Inherited from ChildClass
+            grandChildObj.parentMethod();          // Inherited from ParentClass
+            grandChildObj.anotherParentMethod();   // Inherited from AnotherParentClass
+            grandChildObj.grandChildMethod();      // Own method
+        }
     }
-}
  
 
-#To overcome this we can use the "Composition/Delegation method" to solve this.
-#where a class contains objects of other classes to utilize their functionalities
-class ParentClass {
-    void parentMethod() {
-        System.out.println("Parent method");
-    }
-}
-
-class AnotherParentClass {
-    void anotherParentMethod() {
-        System.out.println("Another parent method");
-    }
-}
-
-class ChildClass {
-    private ParentClass parentObj;
-    private AnotherParentClass anotherParentObj;
-
-    ChildClass() {
-        parentObj = new ParentClass();
-        anotherParentObj = new AnotherParentClass();
+    #To overcome this we can use the "Composition/Delegation method" to solve this.
+    #where a class contains objects of other classes to utilize their functionalities
+    class ParentClass {
+        void parentMethod() {
+            System.out.println("Parent method");
+        }
     }
 
-    void childMethod() {
-        System.out.println("Child method");
+    class AnotherParentClass {
+        void anotherParentMethod() {
+            System.out.println("Another parent method");
+        }
     }
 
-    void parentMethod() {
-        parentObj.parentMethod();
+    class ChildClass {
+        private ParentClass parentObj;
+        private AnotherParentClass anotherParentObj;
+
+        ChildClass() {
+            parentObj = new ParentClass();
+            anotherParentObj = new AnotherParentClass();
+        }
+
+        void childMethod() {
+            System.out.println("Child method");
+        }
+
+        void parentMethod() {
+            parentObj.parentMethod();
+        }
+
+        void anotherParentMethod() {
+            anotherParentObj.anotherParentMethod();
+        }
     }
 
-    void anotherParentMethod() {
-        anotherParentObj.anotherParentMethod();
-    }
-}
+    class GrandChildClass {
+        private ChildClass childObj;
 
-class GrandChildClass {
-    private ChildClass childObj;
+        GrandChildClass() {
+            childObj = new ChildClass();
+        }
 
-    GrandChildClass() {
-        childObj = new ChildClass();
+        void grandChildMethod() {
+            System.out.println("Grandchild method");
+        }
+
+        void childMethod() {
+            childObj.childMethod();
+        }
+
+        void parentMethod() {
+            childObj.parentMethod();
+        }
+
+        void anotherParentMethod() {
+            childObj.anotherParentMethod();
+        }
     }
 
-    void grandChildMethod() {
-        System.out.println("Grandchild method");
+    public class Main {
+        public static void main(String[] args) {
+            GrandChildClass grandChildObj = new GrandChildClass();
+            grandChildObj.childMethod();           // Inherited through composition
+            grandChildObj.parentMethod();          // Inherited through composition
+            grandChildObj.anotherParentMethod();   // Inherited through composition
+            grandChildObj.grandChildMethod();      // Own method
+        }
     }
 
-    void childMethod() {
-        childObj.childMethod();
-    }
 
-    void parentMethod() {
-        childObj.parentMethod();
-    }
+   # Y interface when we have abstract class and methods is that, in case of abstract classes
+    we can only achieve partial abstr whereas incase of interface we can achive 100% abstr.
+    
+   # By having all methods in an interface declared without implementation details, 
+    you ensure that the interface provides 100% abstraction. The interface solely 
+    serves as a contract that defines what methods a class implementing it 
+    should have, without specifying how those methods should be implemented.
 
-    void anotherParentMethod() {
-        childObj.anotherParentMethod();
-    }
-}
+   # abstract classes can also provide abstraction, but they can also have
+    non-abstract (concrete) methods with implementation details.
 
-public class Main {
-    public static void main(String[] args) {
-        GrandChildClass grandChildObj = new GrandChildClass();
-        grandChildObj.childMethod();           // Inherited through composition
-        grandChildObj.parentMethod();          // Inherited through composition
-        grandChildObj.anotherParentMethod();   // Inherited through composition
-        grandChildObj.grandChildMethod();      // Own method
-    }
-}
+   # Restricting the outside world to access the prop of classes is done through "encap",
+   using "Private" keyword
+
+   # Incase of abstr classes we cannot explicitly definethe objects , but the java can can itslef 
+   instantiate through inheritance.
+    ex:
+        abstract class Keys{
+            int x,y;
+            public Keys(){
+                SOP("Hello abstr constructor");
+            }
+            abstract void display();
+        }
+        class B extends Keys{
+            void display(){
+                SOP("Hello exntended class");
+            }
+        }
+
+        main class:
+            Keys k=new B();
+            k.display();
+
+
+        # Here once the extension is done,it auto calls the parent class and initializes 
+        it, this should be done where it is able to look for the method that is being called and 
+        the base class constructor is called by then. 
+
+
+        

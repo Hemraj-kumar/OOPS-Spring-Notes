@@ -24,18 +24,37 @@
 //         System.out.println("hell hdd");
 //     }
 // }
-class A{
-    void Hello(){
-        System.out.println("helo A");
+// class A{
+//     void Hello(){
+//         System.out.println("helo A");
+//     }
+// }
+// class B extends A{
+//     void Hello(){
+//         System.out.println("helo B");
+//     }
+// }
+// public class Keys extends A,B{
+//     void Hello(){
+//         System.out.println("helo C");
+//     }
+// }
+
+class Keys{
+    private String name;
+    private String age;
+
+    public Keys(String name,String age){
+        this.name=name;
+        this.age=age;
     }
-}
-class B extends A{
-    void Hello(){
-        System.out.println("helo B");
-    }
-}
-public class Keys extends A,B{
-    void Hello(){
-        System.out.println("helo C");
+
+    public void setName(String name){this.name=name;}
+    public void setAge(String age){this.age=age;}
+    public String getName(){return name;}
+    public String geAge(){return age;}
+
+    public void Display(){
+        System.out.println(this.getName()+" "+this.geAge());
     }
 }
