@@ -283,4 +283,25 @@ Default:
         the base class constructor is called by then. 
 
 
+
+        # For every class the compiler maintains an method table,
+        class Test{
+            void m1(int i) SOP("s");
+            void m2(String) SOP("k");                   Compiler -- m1(int), m2(String) [methods table]
+        }
+
+        **Mthod Overloading -- (Mthod signatures) where the method names are same but the args are diff from each other.
+        class Keys{
+            public void m1(int i){
+                System.out.println("Integer type");
+            }
+            public void m1(double j){
+                System.out.println("Float type");
+            }
+        }
+        **Mthod Resoultion -- which method should exe first is been decided 
+        #method Overloading is called compile time poly coz method res is taken care by ref type not on run time object;
+        Keys k = new Keys();
+        ** k -- ref type -- this will refer to the class that is defined left of it.
         
+

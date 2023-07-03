@@ -40,21 +40,29 @@
 //     }
 // }
 
+// class Keys{
+//     private String name;
+//     private String age;
+
+//     public Keys(String name,String age){
+//         this.name=name;
+//         this.age=age;
+//     }
+
+//     public void setName(String name){this.name=name;}
+//     public void setAge(String age){this.age=age;}
+//     public String getName(){return name;}
+//     public String geAge(){return age;}
+
+//     public void Display(){
+//         System.out.println(this.getName()+" "+this.geAge());
+//     }
+
 class Keys{
-    private String name;
-    private String age;
-
-    public Keys(String name,String age){
-        this.name=name;
-        this.age=age;
+    public void m1(int i){
+        System.out.println("Integer type");
     }
-
-    public void setName(String name){this.name=name;}
-    public void setAge(String age){this.age=age;}
-    public String getName(){return name;}
-    public String geAge(){return age;}
-
-    public void Display(){
-        System.out.println(this.getName()+" "+this.geAge());
+    public void m1(double j){
+        System.out.println("Float type");
     }
 }

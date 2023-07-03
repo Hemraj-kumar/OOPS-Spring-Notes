@@ -23,7 +23,9 @@ public class Index{
     // k.Ram("buju");
     // k.Screen();
     // k.Ram();
-    Keys k=new Keys("kutyma", "20");
-    k.Display();
+    Keys k=new Keys();
+    k.m1(25);
+    k.m1(2.233);
+    k.m1('n');
     }
 }
