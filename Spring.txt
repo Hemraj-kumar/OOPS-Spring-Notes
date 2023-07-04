@@ -1,0 +1,25 @@
+#In spring security we have the oAuth client2 authorization by using the github and google logins
+
+#Setup in Application.properties
+  
+#github login
+
+spring.security.oauth2.client.registration.github.client-id=84cc16b3fa6b151b0183
+spring.security.oauth2.client.registration.github.client-secret=177fd38635172ebdc346f6ea147efba65490ea3e
+
+#google login
+spring.security.oauth2.client.registration.google.client-id=386695636831-v0nma8ivgr4mcls5jva3qsl7gt4ug1bb.apps.googleusercontent.com
+spring.security.oauth2.client.registration.google.client-secret=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
+
+
+logging.level.org.springframework.security=TRACE
+
+
+#After this we need to setup the login in github and google cloud engine 
+  #in case of google cloud logins we have only access to 100 users initially.
+
+  #we should have an call back URL once the setup is done for the setting up the github authorisation with the " client-id and client-secret ".
+    homepage URL :  http://localhost:8080
+    callback URL :  http://localhost:8080/login/oauth2/code/github
+    callback URL :  http://localhost:8080/login/oauth2/code/google ---- for google login with oAuth  
+
