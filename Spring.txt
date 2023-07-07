@@ -23,3 +23,13 @@ logging.level.org.springframework.security=TRACE
     callback URL :  http://localhost:8080/login/oauth2/code/github
     callback URL :  http://localhost:8080/login/oauth2/code/google ---- for google login with oAuth  
 
+
+
+Instead of creating the @Autowired annotation we can just make use of the constructor for it.
+
+@Autowired --- 
+Imagerepo imagerepo #this can be changed to the following constructor 
+public ImageService(ImageRepo imageRepo){
+  this.imageRepo=imageRepo;
+}
+
