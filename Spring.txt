@@ -33,3 +33,18 @@ public ImageService(ImageRepo imageRepo){
   this.imageRepo=imageRepo;
 }
 
+
+In spring security the OAuth can be done in the folowing way with class and config that are mentioned above
+public class SecurityConfig {
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.
+                authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("/").permitAll();
+                    auth.anyRequest().authenticated();
+                } )
+                .oauth2Login(withDefaults())
+                .formLogin(withDefaults())
+                .build();
+    }
+}
