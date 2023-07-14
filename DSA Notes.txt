@@ -1,0 +1,86 @@
+DSA Notes
+
+
+
+whenever the prgm is loaded it will be put into the main memory. the arrangment of data imnsiade the main memory for efficeint process is called the data structures. how the data is stored in the relational model or any other model is callled the database.
+
+Data -- legacy data -- old data called the data warehouses helping for further process -- for fetching those data we use the data mining algos(inactive)
+
+     -- operational data -- currently working data
+     -- big data -- the data  that used in internet for various analytical process and commercial uses.
+	
+
+Memory is divided into smaller areas called bytes, the entire mem like 8gb is not compltely used whereas it is divieded into segments.
+
+the mem is div into 3 sec used by a prgm 
+where the prgm resides -- code sec --  prgm where it is loaded is by the main memory 
+		       -- stack
+		       -- heap
+
+void main(){
+   int a; -- 2 bytees mem
+   float b; -- 4 bytes mem = 6 bytes 
+}
+	$ this 6 bytes is allocated in the stack memory 
+	$ the portion of memory given for the above fn in the stack is called the activation record of that fn / stack frame of that function.
+
+
+	$ the compiler decides how much amount of memnory should be allocated for the fn(compile time), once the prgm starts running the amount of memory is decided inside the stack.this is called static mem alloc coz the amount of mem is req is been decided during the compile time. 
+	$ When there is an main fn with multiple subfn's where, initially the main fn gets the mem alloc at stack and once the other fn gets called eventhough the main fn has not yet finished its work, the mem gets alloc for the subFn(activation record)...once the subFn completes the work the mem is deallocated from stack...the same is covered for remaining.
+	$ the stack mem is allocated and dealocated automatically.
+
+# Heap mem is unorganized and they are actually an resource, on demand supply.prgm cannot access heap mem directly.Using pointers they get access.
+
+$ pointer mem is actually decided based on the datatype size and compiler size.
+
+void main (){
+	int *p -- p gets allcated insside the stack mem 
+	p=new int[4]; -- when used with new keyword the mem gets alloc inside heap
+	#incase of C we use malloc by  -- p=(int*) malloc(sizeof(int)*5);
+}
+$ Heap mem loc is shard to the variable that is in stack.
+$ if we no need heap mem then we should del them not just pointing to null ,instead we should 
+	dealloc [] p; (free(p));
+$ if we are not releasing it then, it will be still belonging to the program again and we cannot use them and there is an mem leakage / loss of mem.
+
+
+@ elem is Missing  unsorted/ no sequence
+scan through the array and find the diff b/w the array number and the index
+diff=arr[0] // lowest element in the array || starting elem
+for i in range(0,n):
+	if(A[i]-i != diff):
+		print(i+diff)
+		break
+
+@elem multipe missing && sorted with sequence
+diff=low
+for i in range(0,n):
+	if(A[i]-i != diff) :
+		while diff<A[i]-i :
+			print(i+diff)
+			diff++
+
+@Efficient approach
+1) take size of new array wit h size of max elem -- initialized to 0
+2) increment the locations that are present in the array
+3) the locations that are not incremented then they are missing elements
+4)O(n) -- time complexity and the time taken for filling the elems is constant time 
+5) they have limited space 
+
+l=min(arr)
+m=max(arr)
+L=[0]*m
+for i in range(0,m):
+	L[arr[i]]+=1
+
+for i in range(l,m) :
+	if(L[i] == 0) :
+		print(L[i])
+
+
+
+
+			
+
+		
+
