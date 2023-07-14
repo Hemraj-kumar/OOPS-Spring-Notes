@@ -77,10 +77,45 @@ for i in range(l,m) :
 	if(L[i] == 0) :
 		print(L[i])
 
+@JAVA
 
+$ intrepreter is always req whereas compiler is req only once as it translates the code block once but for intr for each line the translation part is req.for compiler the entire code is converted into a seperate file nd exe n no.of times, but here intrp for each nd every line the intrp and prgm runs along with them.
 
+$ initially the java code / source is compilednd converted into the class file which contains byte code after that jcm comes into picture.
 
-			
+$ JVM contains intrp/ JIT(just in time) Compiler converts the byte code into machine code and get it exe in the hardware, jvm interacts  with h/w via OS.JIT does it faster than the intrp. 
 
+$ java prgm once compiled they can be run anywhere in any kind of OS and this is done by JVM.
+
+# pushing the class file into main mem for exe is called the class loading done by class loader.
+
+# garbage collector collects the objects that are remoined in the heap which resides in the jvm. 
+
+# loading -- boostrap loading , extension cls loading , appl class loading
+
+@ ways of creating string in java
+1)  char ch[]={'a','b','a','a'};
+String str=new String(ch);
+
+$ this str stores the ref/address of the formed string , incase of java everything is objects there is collections of characters in string they are objects.
+
+2) byte ch[]={98,99,101,102};
+String str=new String(ch);
+
+$ this str converts this numbers into resp ascii values where it stores characters of them and finally shows them as string, once we use the "new " keyword they are created in heap and the constructor is called that is on right side, which gives the req method for storing.
+
+3)String str=new String("JAVA")';
+$ this str pointing to the string java have ref for it, storing it in heap, and the literal "JAVA" itself creates an object in the , " string constant pool ", this will not have any reference.
 		
+4) String str="JAVA" 
+$ here we have not used the new keyword whereas they are created in the string constant pool object and they are ref to str , it ref since we have asked the jvm to create the ref for literal.
+
+@Literals also occupy space.
+
+String str1="JAVA";
+String str2="JAVA";
+
+$ this str1 points to the literal java created in the string pool of objects and str2 doesen't create any  object instead they point to the same literal. 
+ 
+
 
