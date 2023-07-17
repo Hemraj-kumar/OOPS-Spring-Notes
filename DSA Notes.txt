@@ -116,6 +116,42 @@ String str1="JAVA";
 String str2="JAVA";
 
 $ this str1 points to the literal java created in the string pool of objects and str2 doesen't create any  object instead they point to the same literal. 
- 
-
+  
+@reverse a stack recursively, without using any loop or other data structures
+import java.util.*;
+public class Main
+{
+    static Stack<Integer> st=new Stack<>();
+    // static Stack<Integer> st=ne 
+    static void insert_bottom(int x){
+        if(st.isEmpty()){
+            st.push(x);
+            System.out.println(st);
+        }else{
+            int l=st.peek();
+            st.pop();
+            insert_bottom(x);
+            System.out.println(x);
+            st.push(l);
+        }
+    }
+    static void rev(){
+        if(st.size()>0){
+            int k=st.peek();
+            st.pop();
+            rev();
+            
+            System.out.println("last elem "+k);
+            insert_bottom(k);
+        }
+    }
+	public static void main(String[] args){
+	    st.push(1);
+	    st.push(2);
+	    st.push(3);
+	    st.push(4);
+	    System.out.println(st);
+	    rev();
+	}
+}
 
