@@ -155,3 +155,37 @@ public class Main
 	}
 }
 
+
+@print all permutations of array
+
+public class Main
+{
+    static void rec(List<List<Integer>> ls,List<Integer> ds,boolean[] freq,int n,int[]nums){
+        if(ds.size() == n){
+            ls.add(new ArrayList<>(ds));
+            return;
+        }
+            for(int i=0;i<n;i++){
+                if(!freq[i]){
+                    freq[i]=true;
+                    // System.out.println(freq[i]);
+                    ds.add(nums[i]);
+                    rec(ls,ds,freq,n,nums);
+                    System.out.println(ds);
+                    ds.remove(ds.size()-1);
+                    System.out.println(ds);
+                    freq[i]=false;
+                }
+            }
+    }
+	public static void main(String[] args){
+	   int[]nums={1,2,4};
+	   int n=nums.length;
+	   List<List<Integer>> ls=new ArrayList<>();
+	   List<Integer> ds=new ArrayList<>();
+	   boolean[] freq=new boolean[nums.length];
+	   rec(ls,ds,freq,n,nums);
+	   System.out.println(ls);
+	}
+}
+
