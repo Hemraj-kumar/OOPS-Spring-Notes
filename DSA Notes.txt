@@ -204,20 +204,33 @@ next_perm=[2 154300] $ 543100, 514300, ... we need to find immediate greater num
 (3) [23 54100] -- in this case we can find that its >2154300 where we found the 23 that is sligthly >21 and we place the remaining numbers in sorted order
 
 #code
-int ind=-1;
-for(int i=n-2;i>=0;i--){
-	if(a[i]>a[i+1]){
-		ind=i;break;
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+// 		System.out.println("Hello World");
+        List<Integer> arr=Arrays.asList(1,2,4,5);
+        int n=arr.size();
+        int ind=-1;
+        for(int i=n-2;i>=0;i--){
+            if(arr.get(i)<arr.get(i+1)){
+                ind=i;
+                break;
+            }
+        }
+        if(ind == -1) {System.out.println("cant be found");return;}
+        
+        for(int i=n-1;i>ind;i--){
+            if(arr.get(i)>arr.get(ind)){
+                int tem=arr.get(i);
+               arr.set(i,arr.get(ind));
+               arr.set(ind,tem);break;
+            }
+        }
+        List<Integer> ls=arr.subList(ind+1,n);
+        Collections.reverse(ls);
+         
+        System.out.println(arr);
 	}
 }
-if(ind == -1){
-	reverse();
-}
-for(int i=n-1;i>=0;i--){
-	if(a[i]>a[ind]){
-		swap(a[i],a[ind]);
-		break;
-	}
-}
-reverse(remaining after ind);
-return a;
