@@ -244,3 +244,5 @@ $ complete binary tree -- nodes until the 2nd last level should be compltely fil
 
 $ incase of heap the left child is stored in 2i+1 and right child is stored in 2i+2 in the form of array.
 $ to find the parent of the given child " i " is given by " ceil(i/2)-1 "
+$ if the height of the binary tree is h then the no.of nodes at each level is [2^h]
+$ height/total.no.of nodes that can contain in the binary tree is [2^(h+1) -1]
