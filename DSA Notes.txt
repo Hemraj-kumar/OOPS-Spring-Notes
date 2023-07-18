@@ -189,3 +189,35 @@ public class Main
 	}
 }
 
+
+@Next permutation
+$ In case of finding the next one, the general brute force approach is that generate all possible permutations in sorted order --> do a linear search on a given array --> find the next index to the array given in the question.
+$ so we do initially the prefix match with the array where we do it in sorted order by matching the numbers and forming an integer that is greater than the given number.
+
+arr=[2,1,5,4,3,0,0]
+next_perm =[21543   00] $ matching first 5 chars --> by matching them there is no change since  0 0 can is already arranged need not be done
+next_perm=[2154  300] $ finding number greater than 300 -->003 -->small, 030,300--same
+next_perm=[215 4300] $ find greater than 4300 -- > 3400, 3430, 3040, .... not possible
+next_perm=[21 54300] $ same done not possible we need someone >5
+next_perm=[2 154300] $ 543100, 514300, ... we need to find immediate greater number, the immediate greater number than 1 was 3 ...
+# the conclusion that can be made is that we need to find the breakpoint where " a[i]<a[i+1] " (2) find someone >1 but smaller one that is closer
+(3) [23 54100] -- in this case we can find that its >2154300 where we found the 23 that is sligthly >21 and we place the remaining numbers in sorted order
+
+#code
+int ind=-1;
+for(int i=n-2;i>=0;i--){
+	if(a[i]>a[i+1]){
+		ind=i;break;
+	}
+}
+if(ind == -1){
+	reverse();
+}
+for(int i=n-1;i>=0;i--){
+	if(a[i]>a[ind]){
+		swap(a[i],a[ind]);
+		break;
+	}
+}
+reverse(remaining after ind);
+return a;
