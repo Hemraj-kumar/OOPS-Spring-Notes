@@ -291,3 +291,7 @@ $ buildheap -- O(logn)   delmax -- O(logn)
 	        System.out.print(arr[i]+" ");
 	    }
 	}
+
+
+#QUICK SORT
+$ its 
