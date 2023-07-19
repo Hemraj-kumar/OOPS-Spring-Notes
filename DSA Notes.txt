@@ -236,13 +236,58 @@ public class Main
 }
 
 
-
-@Trees
+@HeapSort
 $ perfect binary tree -- the tree where all the levels are completely filled
 $ almost perfect binary tree -- its not perfect binary tree, leaves at the same lvel are been filled from left to right
 $ complete binary tree -- nodes until the 2nd last level should be compltely filled and in the last level we should fill from left to right.
 
+$ the heapsort algo is divided into phases of heapify, heapsort
 $ incase of heap the left child is stored in 2i+1 and right child is stored in 2i+2 in the form of array.
 $ to find the parent of the given child " i " is given by " ceil(i/2)-1 "
 $ if the height of the binary tree is h then the no.of nodes at each level is [2^h]
 $ height/total.no.of nodes that can contain in the binary tree is [2^(h+1) -1]
+
+$ buildheap -- O(logn)   delmax -- O(logn)
+  findmax -- O(1)	 findmin -- O(N)
+  search -- O(n)	 
+
+#CODE
+	static void heapify(int arr[], int index, int size){
+        int largest=index;
+        int left=(2*index)+1;
+        int right=(2*index)+2;
+        if(left<size && arr[left]>arr[largest]){
+            largest=left;
+        }if(right<size && arr[right]>arr[largest]){
+            largest=right;
+        }
+        if(largest!=index){
+            int temp=arr[index];
+            arr[index]=arr[largest];
+            arr[largest]=temp;
+            heapify(arr,index,size);
+        }
+    }
+    static void heapSort(int arr[]){
+        int size=arr.length;
+        //building heap initially
+        for(int i=(arr.length/2)-1;i>=0;i--){
+            System.out.println(i);
+            heapify(arr,i,size);
+        }
+        for(int i=arr.length-1;i>=0;i--){
+            //swapping with the last ele
+            int temp=arr[0];
+            arr[0]=arr[i];
+            arr[i]=temp;
+            heapify(arr,0,i);
+        }
+    }
+	public static void main(String[] args) {
+	    int[]arr={9,6,2,5,12,52};
+	    heapSort(arr);
+	    
+	    for(int i=0;i<arr.length;i++){
+	        System.out.print(arr[i]+" ");
+	    }
+	}
