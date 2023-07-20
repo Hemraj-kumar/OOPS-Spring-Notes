@@ -302,6 +302,33 @@ Default:
         **Mthod Resoultion -- which method should exe first is been decided 
         #method Overloading is called compile time poly coz method res is taken care by ref type not on run time object;
         Keys k = new Keys();
-        ** k -- ref type -- this will refer to the class that is defined left of it.
-        
+        ** k -- ref type -- this will refer to the class that is defined left of it. 
+
+
+$ final variable is used to create a constant variable once assigned cannot be changed.
+   $ once we make a class final it cannot be inherited.
+   $ final can be used with variables, clases and methods.
+$ finally is a block that is used with try block, when we connect with the databsse we use lot     of resources that are consumed where it needs to be closed at last , we do that using the     finally block, it executes even if triggerd the exception block  or not , we get exe that.
+$ finalize method is a part of object class, once before the garbage collector collects the      objects that are needed to be destroyed, before that if we want to do some operation then that can be performed using the finalize keyword.
+
+#CODE
+class A{
+    public A(){
+        sysout("object created");
+    }
+    @Override
+    public void finalize(){
+        sout("finalize is called atlast");
+        //we cannot call the finalize method since its depreacted and also this funcnality             cannot be exe since its handled by the garbage collector.
+        //if we want to handle the garbgae collector then we shoukld use the 
+        #System.gc(); //calling the garbage collector will call the finalize method.
+    }
+}
+public static void main(String[] args){
+    A obj=new A(); // here obj is a refrence for that class A.the garbage colector will            // collect the object ,once u see a obvject without a refrence.
+    obj=null; // here after this it will destroy the object since the refrence is null or does     not have anything to point.
+    
+}
+
+
 
