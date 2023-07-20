@@ -304,6 +304,32 @@ Default:
         Keys k = new Keys();
         ** k -- ref type -- this will refer to the class that is defined left of it. 
 
+        **Mthod Overriding is the concept where an method is been overrided with same function         but in diff classes with diff funcnalities and they are exe based upon the object type         not on the reference type.
+        class A{
+            void show(){
+                System.out.print("in a");
+            }
+        }
+        class B extends A{
+             void show(){
+                System.out.print("in b");
+            }
+        }
+        class C extends B{
+             void show(){
+                System.out.print("in c");
+            }
+        }
+        public class Main
+        {
+        	public static void main(String[] args) {
+        	    A obj=new C();
+        	    obj.show();
+        	}
+        }
+
+
+@Final method
 
 $ final variable is used to create a constant variable once assigned cannot be changed.
    $ once we make a class final it cannot be inherited.
@@ -321,7 +347,7 @@ class A{
         sout("finalize is called atlast");
         //we cannot call the finalize method since its depreacted and also this funcnality             cannot be exe since its handled by the garbage collector.
         //if we want to handle the garbgae collector then we shoukld use the 
-        #System.gc(); //calling the garbage collector will call the finalize method.
+        #System.gc(); //calling the garbage collector will call the finalize method.gc is a             static method
     }
 }
 public static void main(String[] args){
@@ -330,5 +356,76 @@ public static void main(String[] args){
     
 }
 
+@Static 
+$ the static keywords are used to reduce the work of the constructors that are used to create objects. the main method is itslef an static method since if we want to call the main method then if its not static then we create objects for them to call;
+$ static block is executed only once even if its called n no.of times, if we want to initialize the default value for the variables that are declared then ,  use of contructor comes into picture
+    class A{
+       String name;
+       boolean save;
+       static String ui;
+       
+       A(){             // exe when u create a object // class is loaded first and then the                             constructor
+           name="hemraj";
+           save=true;
+            
+       }
+      static{      // exe when loading a class -- this is loaded only once.
+          ui="flex";
+      }
+       
+       void show(){
+           System.out.println(name +" "+save+" "+ui);
+       }
+    }
+    public class Main
+    {
+    	public static void main(String[] args) {
+    	    A obj=new A();
+    	    
+    	    obj.show();
+    	    obj.show();
+    	    obj.show();
+    	}
+    }
 
+
+$ We cannot access a non-static variable inside a static block.
+$ static variable is shared by diff objects.
+$ the static block is exe first and then the constructors are called. if the objects are not created then the class itself is not loaded.
+
+$ if we want to load the class and don't want to create the object then,
+    Class.forName("class name should be defined")
+
+$ if the class is loaded then the static block is exe.
+
+$ A non-static variable cannot be used inside a static method and cannot be accessed.
+
+$ A non-static variable can be accesed indirectly in a static method with the help of object refrence.
+#CODE
+    class A{
+       String name;
+       boolean save;
+       static String ui;
+      static{
+          ui="flex";
+      }
+       
+       void show(){
+           System.out.println(name +" "+save+" "+ui);
+       }
+       static void show1(A obj){
+           System.out.print(obj.name+" "+obj.save+" "+obj.ui);
+          System.out.print("static method");
+       }
+    }
+    public class Main
+    {
+    	public static void main(String[] args) {
+    	    A obj1=new A();
+    	    obj1.name="helo";
+    	    obj1.save=false;
+    	   // obj1.show();
+    	    A.show1(obj1);
+    	}
+    }
 
