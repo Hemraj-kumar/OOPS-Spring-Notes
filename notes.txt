@@ -357,6 +357,8 @@ public static void main(String[] args){
 }
 
 @Static 
+$ static is a class member not an object member, since we use the class name for calling them.
+$ java instance var are the var that are declared inside anc class but outside the scope of function is called instance var
 $ the static keywords are used to reduce the work of the constructors that are used to create objects. the main method is itslef an static method since if we want to call the main method then if its not static then we create objects for them to call;
 $ static block is executed only once even if its called n no.of times, if we want to initialize the default value for the variables that are declared then ,  use of contructor comes into picture
     class A{
@@ -428,4 +430,26 @@ $ A non-static variable can be accesed indirectly in a static method with the he
     	    A.show1(obj1);
     	}
     }
+
+
+@Constructor chaining
+public class Test{
+    int id,age;
+    String name, add;
+    public Test(int id,int age){
+        this.id=id;
+        this.age=age;
+    }
+    public Test(int id,int age,String name,String add){
+        this(id,age);
+        this.name=name;this.add=add;
+    }
+    public static void main(String[] args) {
+        Test m=new Test(1,22,"buju","nr");
+        System.out.println(m.name+" "+m.age+" "+m.id+" "+m.add);
+    }
+}
+
+$ constructor chaining is the concept of calling an constrcutor of same class into  another constructor
+$ instead of passing the this keyword we could have used the curet class object instead we use this keyword because its an final variable and they      cannot be changed or assigned to another.
 
