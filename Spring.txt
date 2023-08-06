@@ -48,3 +48,6 @@ public class SecurityConfig {
                 .build();
     }
 }
+
+
+@RestController returns a json/xml data in return whereas the @Controller annotation retunrs an view that is mentioned in the controller page.
