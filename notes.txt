@@ -453,3 +453,73 @@ public class Test{
 $ constructor chaining is the concept of calling an constrcutor of same class into  another constructor
 $ instead of passing the this keyword we could have used the curet class object instead we use this keyword because its an final variable and they      cannot be changed or assigned to another.
 
+##ENUM
+
+In Java, an `enum` (short for "enumeration") is a special data type used to define a fixed set of constants or values. Enums are often used to represent a collection of related constants in a more structured and type-safe manner.
+
+Here are some key characteristics and uses of enums in Java:
+
+1. **Defining Enumerations:** To declare an enum, you use the `enum` keyword followed by the name of the enumeration and a list of constant values enclosed in curly braces `{}`.
+
+   ```java
+   enum Day {
+       SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
+   }
+   ```
+
+2. **Constants:** Each value inside an enum is a constant. In the example above, `Day.SUNDAY`, `Day.MONDAY`, and so on are constants of the `Day` enum.
+
+3. **Type-Safe:** Enums are type-safe, which means that you can only assign values from the enum to variables of that enum type. This helps prevent programming errors.
+
+   ```java
+   Day today = Day.FRIDAY; // Valid
+   // Day today = 5; // Invalid, can't assign an arbitrary integer
+   ```
+
+4. **Methods and Fields:** Enums can have methods and fields like regular Java classes. Each constant in the enum is an instance of the enum type and can have its own behavior.
+
+   ```java
+   enum Operation {
+       ADD {
+           public int apply(int x, int y) { return x + y; }
+       },
+       SUBTRACT {
+           public int apply(int x, int y) { return x - y; }
+       },
+       MULTIPLY {
+           public int apply(int x, int y) { return x * y; }
+       },
+       DIVIDE {
+           public int apply(int x, int y) { return x / y; }
+       };
+
+       public abstract int apply(int x, int y);
+   }
+   ```
+
+5. **Iteration:** You can easily iterate over the values of an enum using a `for-each` loop.
+
+   ```java
+   for (Day day : Day.values()) {
+       System.out.println(day);
+   }
+   ```
+
+6. **Switch Statements:** Enums are often used with `switch` statements to handle different cases.
+
+   ```java
+   Day today = Day.FRIDAY;
+   switch (today) {
+       case MONDAY:
+           System.out.println("It's Monday.");
+           break;
+       case FRIDAY:
+           System.out.println("It's Friday!");
+           break;
+       // ...
+   }
+   ```
+
+Enums are useful when you have a well-defined set of related constant values that you want to group together. They provide better type checking and code readability compared to using primitive constants (e.g., `int` or `String` constants) in your code.
+
+
