@@ -19,3 +19,7 @@ public class Selection {
         }
     }
 }
+
+
+time complexity becomes ilke O(n^2);
+for best,worst, and avg time complexity
