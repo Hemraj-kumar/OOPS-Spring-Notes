@@ -14,3 +14,7 @@ public class Bubble {
         for(int i=0;i<n;i++) System.out.println(arr[i]);
     }
 }
+
+time complexity
+    best case --> O(n) if the array is already sorted
+    worst case and avg case is O(n^2)
