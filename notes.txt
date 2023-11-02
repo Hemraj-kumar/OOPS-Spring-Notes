@@ -522,4 +522,109 @@ Here are some key characteristics and uses of enums in Java:
 
 Enums are useful when you have a well-defined set of related constant values that you want to group together. They provide better type checking and code readability compared to using primitive constants (e.g., `int` or `String` constants) in your code.
 
+@Aggregation
+    --Aggregation is the concept where an class has a obejct or reference of another class is called the aggrgation 
+
+For example, think of a "Library" class and a "Book" class. A library aggregates books because it contains books, but books can also exist on their own without being specifically tied to that library.
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Book {
+    private String title;
+
+    public Book(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+}
+
+class Library {
+    private List<Book> books;
+
+    public Library() {
+        books = new ArrayList<>();
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
+    public void listBooks() {
+        System.out.println("Books in the library:");
+        for (Book book : books) {
+            System.out.println(book.getTitle());
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Library myLibrary = new Library();
+        
+        Book book1 = new Book("Introduction to Java");
+        Book book2 = new Book("The Great Gatsby");
+
+        myLibrary.addBook(book1);
+        myLibrary.addBook(book2);
+
+        myLibrary.listBooks();
+    }
+}
+
+@Composition
+--Composition in Java is a strong form of association between classes where one class is composed of or contains another class, and the composed class cannot exist independently of the container class.
+class Engine {
+    public void start() {
+        System.out.println("Engine started");
+    }
+}
+
+class Wheel {
+    private int size;
+
+    public Wheel(int size) {
+        this.size = size;
+    }
+
+    public void rotate() {
+        System.out.println("Wheel of size " + size + " rotating");
+    }
+}
+
+class Car {
+    private Engine engine;
+    private Wheel[] wheels;
+
+    public Car() {
+        engine = new Engine();
+        wheels = new Wheel[4]; // A typical car has four wheels
+        for (int i = 0; i < 4; i++) {
+            wheels[i] = new Wheel(16); // Assume all wheels have a size of 16 inches
+        }
+    }
+
+    public void startCar() {
+        engine.start();
+    }
+
+    public void drive() {
+        for (Wheel wheel : wheels) {
+            wheel.rotate();
+        }
+        System.out.println("Car is moving");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.startCar();
+        myCar.drive();
+    }
+}
+
 
